@@ -9,13 +9,15 @@ using ListManager.Data;
 using ListManager.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Collections;
 
 namespace ListManager.Controllers
 {
     public class ListasController : Controller
-    {
-        private readonly ApplicationDbContext _context;
 
+    {
+        private  ApplicationDbContext _context;
         public ListasController(ApplicationDbContext context)
         {
             _context = context;
@@ -25,7 +27,8 @@ namespace ListManager.Controllers
         [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Lista.ToListAsync());
+            var user = _context.Users.Find(_context.Getid());
+            return View(_context.Lista.Where(s => s.UserID.Equals(user)));
         }
 
         // GET: Listas/Details/5
@@ -64,7 +67,9 @@ namespace ListManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                lista.UserID = User.Identity;
+                var userId = _context.Getid();
+                lista.UserID = _context.Users.Find(userId);
+
                 _context.Add(lista);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

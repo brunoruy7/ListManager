@@ -1,15 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <UserSecretsId>aspnet-ListManager-AE4DA96D-60C3-4AC7-86C0-B2E6395C3CCD</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Helpers\NovaPasta\**" />
-    <Content Remove="Helpers\NovaPasta\**" />
-    <EmbeddedResource Remove="Helpers\NovaPasta\**" />
-    <None Remove="Helpers\NovaPasta\**" />
+    <Compile Remove="Service\NovaPasta\**" />
+    <Content Remove="Service\NovaPasta\**" />
+    <EmbeddedResource Remove="Service\NovaPasta\**" />
+    <None Remove="Service\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
